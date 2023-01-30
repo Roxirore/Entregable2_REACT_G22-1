@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const WeatherCard = ({weather}) => {
-    console.log(weather)
+const WeatherCard = ({weather, temp}) => {
+    const [isCelsius, setIsCelsius] = useState(true)
+    const handleClick = () => setIsCelsius(!setIsCelsius)
   return (
     <article className="card">
         <header className="card__header">
@@ -11,7 +12,14 @@ const WeatherCard = ({weather}) => {
         </header>
         <section className="card__icon-container">
             <img className="card__icon" src={weather && `http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`} alt="" />
-            <h3 className="card__temp">{weather?.main.temp}</h3>
+            <h3 className="card__temp">
+                {
+                    isCelsius ? 
+                        `${temp?.celsius} °C` 
+                    : 
+                        `${temp?.farenheit} °F`
+                }
+            </h3>
         </section>
         <section className="card__info">
             <h3 className="card__description">"{weather?.weather[0].description}"</h3>
@@ -22,8 +30,8 @@ const WeatherCard = ({weather}) => {
             </ul>
         </section>
         <footer className="card__footer">
-            <button className="card__btn">
-                Change to °C/°F
+            <button onClick={handleClick} className="card__btn">
+                Change to {isCelsius?'°F':'°C'}
             </button>
         </footer>
     </article>
