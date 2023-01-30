@@ -21,7 +21,11 @@ const WeatherCard = ({weather}) => {
                 <li className="card__item"><span className="card__span"><i className='bx bxs-thermometer'></i> Pressure: </span>{weather?.main.pressure} hPa</li>
             </ul>
         </section>
-
+        <footer className="card__footer">
+            <button className="card__btn">
+                Change to °C/°F
+            </button>
+        </footer>
     </article>
   )
 }
